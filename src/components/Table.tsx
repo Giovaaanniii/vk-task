@@ -1,7 +1,7 @@
 function Table() {
   return (
     <div>
-      {/* <table >
+      <table >
         <tbody>
           <tr className="tableLine">
             <th className="tableContent">1</th>
@@ -39,7 +39,7 @@ function Table() {
             <th className="tableContent">5</th>
           </tr>
         </tbody>
-      </table> */}
+      </table>
     </div>
   );
 }
