@@ -20,7 +20,7 @@ function TablePage() {
     queryFn: ({ pageParam = 1 }) => getData(pageParam),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      return lastPage.posts?.length ? lastPage.nextPage : undefined;
+      return lastPage.hasMore ? lastPage.nextPage : undefined;
     },
   });
 
@@ -48,12 +48,20 @@ function TablePage() {
       <Table />
 
       {content}
-      {hasNextPage &&(
-        <button
-          onClick={() => fetchNextPage()}>
-          Загрузить еще
-        </button>
-      )}
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
+        {hasNextPage ? (
+          <button
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? "Загрузка..." : "Загрузить еще"}
+          </button>
+        ) : (
+          <div style={{ color: "#666", marginTop: "10px" }}>
+            Вы достигли конца списка
+          </div>
+        )}
+      </div>
     </>
   );
 }
