@@ -1,11 +1,11 @@
 function Table() {
   return (
     <div>
-      <table border={10}>
+      {/* <table >
         <tbody>
           <tr className="tableLine">
             <th className="tableContent">1</th>
-            <th className="tableContent">2</th>
+            <td className="tableContent">2</td>
             <th className="tableContent">3</th>
             <th className="tableContent">4</th>
             <th className="tableContent">5</th>
@@ -39,7 +39,7 @@ function Table() {
             <th className="tableContent">5</th>
           </tr>
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }
