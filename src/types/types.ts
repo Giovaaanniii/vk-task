@@ -1,5 +1,8 @@
 export type Data = {
-  id: string;
-  title: string;
-  views: string;
+  id?: string;
+  names: string;
+  surname: string;
+  email: string;
+  telephone: number;
+  age: number;
 };

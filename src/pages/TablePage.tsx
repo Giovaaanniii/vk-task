@@ -1,13 +1,25 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import Table from "../components/Table";
-import { getData } from "../components/ApiService";
-import type { Data } from "../types/types";
+import { getData, postData } from "../components/ApiService";
 import CreateForm from "../components/CreateForm ";
-// const {mutate} = useMutation({
-//   mutationKey:['add post'],
-//   mutationFn: postData
+import { LoadMore } from "../components/LoadMore";
 
 function TablePage() {
+  const queryClient = useQueryClient();
+
+  
+
+  const { mutate } = useMutation({
+    mutationKey: ["add post"],
+    mutationFn: postData,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["records"] });
+    },
+  });
   const {
     data,
     isPending,
@@ -20,49 +32,23 @@ function TablePage() {
     queryFn: ({ pageParam = 1 }) => getData(pageParam),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      return lastPage.hasMore ? lastPage.nextPage : undefined;
+      return lastPage.next;
     },
   });
 
-  // })
-  const content = data?.pages?.flatMap(
-    (page) =>
-      page.posts?.map((post: Data) => (
-        <div key={post.id}>
-          <div>{post.title || "Нет заголовка"}</div>
-          <div>{post.views || "Нет просмотров"}</div>
-        </div>
-      )) || []
-  );
-
-  if (isPending) {
-    return <div>isLoading</div>;
-  }
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
+  const allPosts = data?.pages?.length ? data?.pages.flatMap((page) => page.data) : [];
   return (
-    <>
-      <CreateForm />
-      <Table />
-
-      {content}
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
-        {hasNextPage ? (
-          <button
-            onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
-          >
-            {isFetchingNextPage ? "Загрузка..." : "Загрузить еще"}
-          </button>
-        ) : (
-          <div style={{ color: "#666", marginTop: "10px" }}>
-            Вы достигли конца списка
-          </div>
-        )}
-      </div>
-    </>
+    <div>
+      <CreateForm onSubmit={mutate} />
+      <Table data={allPosts} />
+      <LoadMore  
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        isPending={isPending}
+        error={error}
+        fetchNextPage={fetchNextPage}
+      />
+    </div>
   );
 }
 
