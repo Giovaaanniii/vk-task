@@ -104,7 +104,7 @@ function CreateForm({ onSubmit }: CreateFormProps) {
         </div>
 
         <div className="record">
-          <input type="submit" disabled={!isValid} />
+          <input type="submit" className="recordSubmit" disabled={!isValid} />
         </div>
       </form>
     </div>

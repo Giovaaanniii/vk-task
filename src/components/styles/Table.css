@@ -1,0 +1,27 @@
+.tableWrapper {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+}
+
+th,
+td {
+  padding: 16px;
+  text-align: left;
+  background-color: rgb(151, 208, 252);
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.554);
+}
+
+tr {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.317);
+  border-radius: 8px;
+}

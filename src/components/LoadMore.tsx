@@ -1,4 +1,5 @@
 import type { FetchNextPageOptions, InfiniteData, InfiniteQueryObserverResult } from "@tanstack/react-query";
+import './styles/LoadMore.css'
 
 interface LoadMoreProps {
     isPending: boolean,
@@ -31,7 +32,7 @@ export function LoadMore(props: LoadMoreProps) {
   return (
     <div style={{ marginTop: "20px", textAlign: "center" }}>
       {props.hasNextPage ? (
-        <button onClick={() => props.fetchNextPage()} disabled={props.isFetchingNextPage}>
+        <button onClick={() => props.fetchNextPage()} className="buttonLoadTable" disabled={props.isFetchingNextPage}>
           {props.isFetchingNextPage ? "Загрузка..." : "Загрузить еще"}
         </button>
       ) : (

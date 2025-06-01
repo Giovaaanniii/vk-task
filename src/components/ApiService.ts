@@ -12,7 +12,7 @@ export const getData = async (page: number, limit: number = 5): Promise<{
   pages: number,
   items: number,
 }> => {
-  const response = await axios.get(`http://localhost:3000/posts`, {
+  const response = await axios.get(`${BASE_URL}/data`, {
     params: {
       _page: page,
       _per_page: limit,

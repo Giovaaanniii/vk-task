@@ -1,4 +1,5 @@
 import type { Data } from "../types/types";
+import './styles/Table.css'
 
 interface TableProps {
   data: Data[];
@@ -7,10 +8,11 @@ interface TableProps {
 function Table({ data }: TableProps) {
   if (!data?.length) return <div>Нет данных</div>;
 
-  const columns = ['id', 'names', 'surname', 'age', 'email', 'telephone', 'title', 'views'];
+  const columns = ['id', 'names', 'surname', 'age', 'email', 'telephone'];
 
   return (
-    <table>
+    <div className="tableWrapper">
+        <table >
       <thead>
         <tr>
           {columns.map(column => (
@@ -30,6 +32,8 @@ function Table({ data }: TableProps) {
         ))}
       </tbody>
     </table>
+    </div>
+    
   );
 }
 
