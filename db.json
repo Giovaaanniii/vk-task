@@ -1,8 +1,18 @@
 {
-  "posts": [
+  "data": [
     {
       "id": "1",
       "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "345",
+      "names": "a title",
+      "views": 100
+    },
+    {
+      "id": "567",
+      "surname": "a title",
       "views": 100
     },
     {
@@ -13,23 +23,9 @@
     {
       "id": "3d04"
     },
+    
     {
       "id": "3511"
         }
-  ],
-  "comments": [
-    {
-      "id": "1",
-      "text": "a comment about post 1",
-      "postId": "1"
-    },
-    {
-      "id": "2",
-      "text": "another comment about post 1",
-      "postId": "1"
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
